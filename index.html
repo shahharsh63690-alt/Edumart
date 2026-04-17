@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduMart – Smart Campus E-Commerce</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="app.navigate('home')">
+                <i class="ph-fill ph-student"></i>
+                <span>EduMart</span>
+            </div>
+
+            <button class="mobile-menu-btn" onclick="app.toggleMobileMenu()">
+                <i class="ph ph-list"></i>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="#" onclick="app.navigate('home')" class="active" data-target="home">Home</a></li>
+                <li><a href="#" onclick="app.navigate('products')" data-target="products">Products</a></li>
+                <li><a href="#" onclick="app.navigate('sell')" data-target="sell">Sell Item</a></li>
+                <li><a href="#" onclick="app.navigate('dashboard')" data-target="dashboard">Dashboard</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="icon-btn cart-btn" onclick="app.toggleCart()">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="badge" id="cart-badge">0</span>
+                </button>
+                <button class="btn btn-outline" id="auth-btn" onclick="app.openAuthModal()">Login</button>
+                <div class="user-profile hidden" id="user-profile">
+                    <div class="avatar"><i class="ph ph-user"></i></div>
+                    <span id="nav-username">User</span>
+                    <button class="icon-btn" onclick="app.logout()" title="Logout"><i
+                            class="ph ph-sign-out"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area (SPA Sections) -->
+    <main id="main-content">
+
+        <!-- HOME SECTION -->
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>The Smartest Way to Buy & Sell on Campus</h1>
+                    <p>Join thousands of students trading textbooks, lab gear, and study materials safely and
+                        affordably.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-lg" onclick="app.navigate('products')">Explore
+                            Marketplace</button>
+                        <button class="btn btn-secondary btn-lg" onclick="app.navigate('sell')">Start Selling</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Students studying">
+                </div>
+            </div>            <!-- WHY EDUMART - Zigzag Feature Rows -->
+            <div class="why-edumart">
+                <h2 class="section-title">Why EduMart?</h2>
+                <div class="zigzag-row">
+                    <div class="zigzag-visual">
+                        <div class="zigzag-icon-circle blue">
+                            <i class="ph-fill ph-piggy-bank"></i>
+                        </div>
+                    </div>
+                    <div class="zigzag-text">
+                        <h3>Save Up to 60% on Study Materials</h3>
+                        <p>Why pay full price? Buy gently-used textbooks, calculators, and drafters from seniors who no longer need them. Our built-in budget tracker helps you keep spending under control.</p>
+                    </div>
+                </div>
+                <div class="zigzag-row reverse">
+                    <div class="zigzag-visual">
+                        <div class="zigzag-icon-circle green">
+                            <i class="ph-fill ph-map-pin-area"></i>
+                        </div>
+                    </div>
+                    <div class="zigzag-text">
+                        <h3>Trade Within Your Campus</h3>
+                        <p>No shipping, no strangers. Every trade happens face-to-face on campus. Meet in the canteen, library, or lab — it's that simple and safe.</p>
+                    </div>
+                </div>
+                <div class="zigzag-row">
+                    <div class="zigzag-visual">
+                        <div class="zigzag-icon-circle orange">
+                            <i class="ph-fill ph-recycle"></i>
+                        </div>
+                    </div>
+                    <div class="zigzag-text">
+                        <h3>Reduce Waste, Reuse Knowledge</h3>
+                        <p>Give your books a second life instead of collecting dust. Every item resold is one less item wasted — sustainability starts with small choices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HOW IT WORKS - Connected Timeline -->
+            <div class="how-it-works">
+                <h2 class="section-title">How It Works</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"><i class="ph-fill ph-user-plus"></i></div>
+                        <div class="timeline-content">
+                            <h3>Create Your Account</h3>
+                            <p>Sign up in seconds with just a username — no email verification needed for this demo.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"><i class="ph-fill ph-magnifying-glass"></i></div>
+                        <div class="timeline-content">
+                            <h3>Browse or List Items</h3>
+                            <p>Filter by category and semester to find exactly what you need, or list your own items for sale.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"><i class="ph-fill ph-shopping-cart-simple"></i></div>
+                        <div class="timeline-content">
+                            <h3>Add to Cart & Track Budget</h3>
+                            <p>Add items to your cart and watch your budget in real time. Get alerts before you overspend.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"><i class="ph-fill ph-handshake"></i></div>
+                        <div class="timeline-content">
+                            <h3>Meet & Exchange</h3>
+                            <p>Connect on campus for a quick, safe exchange. No shipping — instant gratification!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATS COUNTER SECTION -->
+            <div class="stats-section">
+                <div class="stat-counter-grid">
+                    <div class="stat-counter-card">
+                        <i class="ph-fill ph-users-three"></i>
+                        <span class="counter-value" data-target="5000">0</span>
+                        <span class="counter-label">Students Joined</span>
+                    </div>
+                    <div class="stat-counter-card">
+                        <i class="ph-fill ph-package"></i>
+                        <span class="counter-value" data-target="1200">0</span>
+                        <span class="counter-label">Items Listed</span>
+                    </div>
+                    <div class="stat-counter-card">
+                        <i class="ph-fill ph-swap"></i>
+                        <span class="counter-value" data-target="3500">0</span>
+                        <span class="counter-label">Successful Trades</span>
+                    </div>
+                    <div class="stat-counter-card">
+                        <i class="ph-fill ph-buildings"></i>
+                        <span class="counter-value" data-target="42">0</span>
+                        <span class="counter-label">Colleges Covered</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BROWSE CATEGORIES SECTION -->
+            <div class="browse-categories">
+                <h2 class="section-title">Browse by Category</h2>
+                <div class="category-cards-grid">
+                    <div class="category-card cat-blue" onclick="app.goToCategory('Textbooks')">
+                        <i class="ph-fill ph-books"></i>
+                        <h3>Textbooks</h3>
+                        <p>Find your semester books</p>
+                        <span class="cat-arrow"><i class="ph ph-arrow-right"></i></span>
+                    </div>
+                    <div class="category-card cat-green" onclick="app.goToCategory('Lab Equipment')">
+                        <i class="ph-fill ph-flask"></i>
+                        <h3>Lab Equipment</h3>
+                        <p>Microscopes, kits & more</p>
+                        <span class="cat-arrow"><i class="ph ph-arrow-right"></i></span>
+                    </div>
+                    <div class="category-card cat-purple" onclick="app.goToCategory('Stationery')">
+                        <i class="ph-fill ph-pencil-ruler"></i>
+                        <h3>Stationery</h3>
+                        <p>Pens, calculators, drafters</p>
+                        <span class="cat-arrow"><i class="ph ph-arrow-right"></i></span>
+                    </div>
+                    <div class="category-card cat-orange" onclick="app.goToCategory('Project Materials')">
+                        <i class="ph-fill ph-wrench"></i>
+                        <h3>Project Materials</h3>
+                        <p>Arduino, sensors & circuits</p>
+                        <span class="cat-arrow"><i class="ph ph-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FEATURED PRODUCTS SECTION -->
+            <div class="featured-products-section">
+                <div class="section-header-row">
+                    <h2 class="section-title" style="margin:0;">Featured Listings</h2>
+                    <button class="btn btn-outline" onclick="app.navigate('products')">View All <i
+                            class="ph ph-arrow-right"></i></button>
+                </div>
+                <div class="featured-products-grid" id="home-featured-grid">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- TESTIMONIALS SECTION -->
+            <div class="testimonials-section">
+                <h2 class="section-title">What Students Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                        </div>
+                        <p>"I saved over ₹3,000 on textbooks this semester thanks to EduMart. Absolute lifesaver!"</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar blue">R</div>
+                            <div>
+                                <strong>Riya Mehta</strong>
+                                <span>CSE, Sem 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                        </div>
+                        <p>"Sold my old lab equipment within 2 days. The platform is super easy to use!"</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar green">A</div>
+                            <div>
+                                <strong>Arjun Nair</strong>
+                                <span>Electronics, Sem 6</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                        </div>
+                        <p>"The budget tracker is genius. I can finally see how much I'm spending each semester."</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar purple">P</div>
+                            <div>
+                                <strong>Priya Sharma</strong>
+                                <span>Mechanical, Sem 3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT US -->
+            <div class="about-us">
+                <h2 class="section-title">About EduMart</h2>
+                <div class="about-layout">
+                    <div class="about-text">
+                        <p>EduMart was created with a simple mission: to make academic life more affordable and sustainable for students.</p>
+                        <p>We provide a localized, safe, and community-driven platform for buying and selling textbooks, lab equipment, and other essential study materials. By keeping transactions within the campus community, we help students save money, reduce waste, and connect with their peers.</p>
+                        <button class="btn btn-primary" onclick="app.navigate('products')"><i class="ph ph-storefront"></i> Visit Marketplace</button>
+                    </div>
+                    <div class="about-visual">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c476?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students on campus">
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA BANNER SECTION -->
+            <div class="cta-banner">
+                <div class="cta-content">
+                    <h2>Ready to Start Trading?</h2>
+                    <p>Join thousands of students on EduMart and make campus life smarter.</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary btn-lg" onclick="app.openAuthModal()">
+                            <i class="ph ph-user-plus"></i> Sign Up Free
+                        </button>
+                        <button class="btn btn-light btn-lg" onclick="app.navigate('products')">
+                            <i class="ph ph-storefront"></i> Browse Marketplace
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS SECTION -->
+        <section id="products" class="page-section hidden">
+            <div class="products-header">
+                <h2>Marketplace</h2>
+                <div class="search-bar">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Search for books, tools...">
+                </div>
+            </div>
+
+            <div class="products-layout">
+                <aside class="filters-sidebar">
+                    <div class="filter-group">
+                        <h3>Categories</h3>
+                        <label><input type="radio" name="category" value="all" checked> All Items</label>
+                        <label><input type="radio" name="category" value="Textbooks"> Textbooks</label>
+                        <label><input type="radio" name="category" value="Lab Equipment"> Lab Equipment</label>
+                        <label><input type="radio" name="category" value="Stationery"> Stationery</label>
+                        <label><input type="radio" name="category" value="Project Materials"> Project Materials</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3>Semester</h3>
+                        <label><input type="radio" name="semester" value="all" checked> All Semesters</label>
+                        <label><input type="radio" name="semester" value="1"> Semester 1</label>
+                        <label><input type="radio" name="semester" value="2"> Semester 2</label>
+                        <label><input type="radio" name="semester" value="3"> Semester 3</label>
+                        <label><input type="radio" name="semester" value="4"> Semester 4</label>
+                        <label><input type="radio" name="semester" value="5"> Semester 5</label>
+                        <label><input type="radio" name="semester" value="6"> Semester 6</label>
+                    </div>
+                </aside>
+
+                <div class="products-grid" id="products-container">
+                    <!-- Products injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SELL ITEM SECTION -->
+        <section id="sell" class="page-section hidden">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Sell Your Item</h2>
+                    <p>List your academic materials for other students to buy.</p>
+                </div>
+
+                <form id="sell-form">
+                    <div class="form-group">
+                        <label for="sell-title">Product Name</label>
+                        <input type="text" id="sell-title" required placeholder="e.g. Engineering Mathematics Vol 1">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sell-category">Category</label>
+                            <select id="sell-category" required>
+                                <option value="Textbooks">Textbooks</option>
+                                <option value="Lab Equipment">Lab Equipment</option>
+                                <option value="Stationery">Stationery</option>
+                                <option value="Project Materials">Project Materials</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sell-semester">Semester</label>
+                            <select id="sell-semester" required>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sell-price">Price (₹)</label>
+                        <input type="number" id="sell-price" required min="0" placeholder="e.g. 450">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sell-desc">Description</label>
+                        <textarea id="sell-desc" rows="4" required
+                            placeholder="Describe the condition, author, edition, etc."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Product Image</label>
+                        <div class="image-upload-wrapper">
+                            <input type="url" id="sell-image" placeholder="Paste an image URL here" required>
+                            <small>For this demo, please paste a direct image URL (e.g. from Unsplash).</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">List Item on EduMart</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboard" class="page-section hidden">
+            <div class="dashboard-header">
+                <h2>Student Dashboard</h2>
+                <p>Track your spending and items purchased.</p>
+            </div>
+
+            <div id="dashboard-auth-wall" class="auth-wall hidden">
+                <i class="ph ph-lock-key"></i>
+                <h3>Please log in to view your dashboard</h3>
+                <button class="btn btn-primary" onclick="app.openAuthModal()">Login / Sign Up</button>
+            </div>
+
+            <div id="dashboard-content" class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="ph ph-shopping-bag"></i></div>
+                    <div class="stat-details">
+                        <h4>Total Items Purchased</h4>
+                        <span class="stat-value" id="stat-items">0</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="ph ph-wallet"></i></div>
+                    <div class="stat-details">
+                        <h4>Total Money Spent</h4>
+                        <span class="stat-value" id="stat-spent">₹0</span>
+                        <div class="budget-progress-container">
+                            <div class="budget-bar" id="budget-bar"></div>
+                        </div>
+                        <small id="budget-text">₹0 / ₹2000 Budget limit</small>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Spending by Category</h3>
+                    <div class="simple-chart" id="spending-chart">
+                        <!-- Chart bars injected by JS -->
+                        <div class="empty-state">No purchases yet.</div>
+                    </div>
+                </div>
+
+                <div class="recent-purchases-card">
+                    <h3>Recent Purchases</h3>
+                    <div class="purchases-list" id="purchases-list">
+                        <!-- Purchases injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo" onclick="app.navigate('home')">
+                    <i class="ph-fill ph-student"></i>
+                    <span>EduMart</span>
+                </div>
+                <p>The smartest way to buy and sell on campus.</p>
+            </div>
+            <div class="footer-links-group">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" onclick="app.navigate('home')">Home</a></li>
+                    <li><a href="#" onclick="app.navigate('products')">Marketplace</a></li>
+                    <li><a href="#" onclick="app.navigate('sell')">Sell Item</a></li>
+                    <li><a href="#" onclick="app.navigate('dashboard')">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-group">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#" onclick="app.handleComingSoon(event)">Help Center</a></li>
+                    <li><a href="#" onclick="app.handleComingSoon(event)">Safety Guidelines</a></li>
+                    <li><a href="#" onclick="app.handleComingSoon(event)">Terms of Service</a></li>
+                    <li><a href="#" onclick="app.handleComingSoon(event)">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Connect</h3>
+                <div class="social-icons">
+                    <a href="#" onclick="app.handleComingSoon(event)"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" onclick="app.handleComingSoon(event)"><i class="ph ph-twitter-logo"></i></a>
+                    <a href="#" onclick="app.handleComingSoon(event)"><i class="ph ph-instagram-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EduMart. All rights reserved.</p>
+        </div>
+    </footer> <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay" onclick="app.toggleCart(false)"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="icon-btn" onclick="app.toggleCart(false)"><i class="ph ph-x"></i></button>
+        </div>
+
+        <div id="budget-alert" class="budget-alert hidden">
+            <i class="ph-fill ph-warning-circle"></i>
+            <span>Warning: Checking out will exceed your ₹2000 budget!</span>
+        </div>
+
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items injected by JS -->
+            <div class="empty-cart">Your cart is empty</div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">₹0</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkout-btn" onclick="app.checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="auth-modal-overlay">
+        <div class="modal">
+            <button class="modal-close" onclick="app.closeAuthModal()"><i class="ph ph-x"></i></button>
+            <div class="modal-content">
+                <h2 id="auth-title">Welcome Back</h2>
+                <p id="auth-subtitle">Login to access your dashboard and save cart.</p>
+
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label for="auth-username">Username</label>
+                        <input type="text" id="auth-username" required placeholder="student123">
+                    </div>
+                    <div class="form-group">
+                        <label for="auth-password">Password</label>
+                        <input type="password" id="auth-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" id="auth-submit-btn">Login</button>
+                </form>
+
+                <div class="auth-switch">
+                    <span id="auth-switch-text">Don't have an account?</span>
+                    <a href="#" onclick="app.toggleAuthMode()">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
